@@ -9,6 +9,8 @@ class GameBoard:
     INTERSECTION = '+'
     O_CHAR = 'o'
     X_CHAR = 'x'
+    BASE = 4
+    MAX_PLACE_NUMBER = 9
 
     def __init__(self):
         self.disc_map = pd.DataFrame({0: ['1', '4', '7'],
@@ -110,10 +112,27 @@ class GameBoard:
         else:
             return False
         
-
-            
-
-
-
-
-
+    def get_status(self) -> int:
+        """
+        
+        Note
+        ----
+        数字→0
+        o→1
+        x→2
+        number-1 → 4べき指数(power) 
+        """
+        power: int = 0
+        status: int = 0
+        for column in range(self.disc_map.shape[1]):
+            for row in range(self.disc_map.shape[0]):
+                char: str = self.disc_map.at[row, column]
+                if char.isdigit():
+                    power += 1
+                    continue
+                if char == __class__.O_CHAR:
+                    status += 1 * (__class__.BASE ** power)
+                else:
+                    status += 2 * (__class__.BASE ** power)
+                power += 1
+        return status

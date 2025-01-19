@@ -8,12 +8,12 @@ from game_board import GameBoard
 
 class TestGameBoard(unittest.TestCase):
 
-    #@unittest.skip('test001')
+    @unittest.skip('test001')
     def test_display001(self):
         game_board = GameBoard()
         game_board.display()
 
-    #@unittest.skip('test002')
+    @unittest.skip('test002')
     def test_place001(self):
         game_board = GameBoard()
         ok = game_board.place(1, GameBoard.O_CHAR)
@@ -21,7 +21,7 @@ class TestGameBoard(unittest.TestCase):
         print('')
         game_board.display()
 
-    #@unittest.skip('test003')
+    @unittest.skip('test003')
     def test_is_win001(self):
         game_board = GameBoard()
         ok = game_board.place(1, GameBoard.O_CHAR)
@@ -31,7 +31,7 @@ class TestGameBoard(unittest.TestCase):
         win = game_board.is_win(GameBoard.O_CHAR)
         self.assertTrue(win)
 
-    #@unittest.skip('test004')
+    @unittest.skip('test004')
     def test_is_win002(self):
         game_board = GameBoard()
         ok = game_board.place(1, GameBoard.O_CHAR)
@@ -40,7 +40,7 @@ class TestGameBoard(unittest.TestCase):
         win = game_board.is_win(GameBoard.O_CHAR)
         self.assertFalse(win)
 
-    #@unittest.skip('test005')
+    @unittest.skip('test005')
     def test_is_win003(self):
         game_board = GameBoard()
         ok = game_board.place(2, GameBoard.O_CHAR)
@@ -50,7 +50,7 @@ class TestGameBoard(unittest.TestCase):
         win = game_board.is_win(GameBoard.O_CHAR)
         self.assertTrue(win)
 
-    #@unittest.skip('test006')
+    @unittest.skip('test006')
     def test_is_win004(self):
         game_board = GameBoard()
         ok = game_board.place(1, GameBoard.O_CHAR)
@@ -60,7 +60,7 @@ class TestGameBoard(unittest.TestCase):
         win = game_board.is_win(GameBoard.O_CHAR)
         self.assertTrue(win)
 
-    #@unittest.skip('test007')
+    @unittest.skip('test007')
     def test_is_win005(self):
         game_board = GameBoard()
         ok = game_board.place(3, GameBoard.O_CHAR)
@@ -70,13 +70,13 @@ class TestGameBoard(unittest.TestCase):
         win = game_board.is_win(GameBoard.O_CHAR)
         self.assertTrue(win)
 
-    #@unittest.skip('test008')
+    @unittest.skip('test008')
     def test_how_many_blank001(self):
         game_board = GameBoard()
         number: int = game_board.how_many_blank()
         self.assertEqual(number, 9)
 
-    #@unittest.skip('test009')
+    @unittest.skip('test009')
     def test_how_many_blank002(self):
         game_board = GameBoard()
         ok = game_board.place(3, GameBoard.O_CHAR)
@@ -84,6 +84,23 @@ class TestGameBoard(unittest.TestCase):
         ok = game_board.place(7, GameBoard.O_CHAR)
         number: int = game_board.how_many_blank()
         self.assertEqual(number, 6)
+
+    #@unittest.skip('test020')
+    def test_get_status001(self):
+        game_board = GameBoard()
+        ok = game_board.place(1, GameBoard.O_CHAR)
+        ok = game_board.place(2, GameBoard.X_CHAR)
+        status: int = game_board.get_status()
+        print(f"status: {status}")
+        self.assertEqual(status, 9)
+
+    #@unittest.skip('test021')
+    def test_get_status002(self):
+        game_board = GameBoard()
+        ok = game_board.place(5, GameBoard.O_CHAR)
+        status: int = game_board.get_status()
+        print(f"status: {status}")
+        self.assertEqual(status, 9)
 
 if __name__ == "__main__":
     unittest.main()
